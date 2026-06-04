@@ -29,7 +29,7 @@ export default function Navigation({ isMenuOpen, setIsMenuOpen, isDarkMode, setI
             className="cursor-pointer"
             onClick={() => scrollToSection('home')}
           >
-            <Logo className="h-10" />
+            <Logo className={`h-10 ${isDarkMode ? 'text-white' : 'text-slate-900'}`} />
           </motion.div>
 
           {/* Desktop Menu */}

@@ -1,7 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Play } from 'lucide-react';
-import logoImg from "../../imports/Generated_Image_June_03__2026_-_2_49PM.jpg";
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import Logo from './Logo';
 
 export default function Hero({ isDarkMode }: { isDarkMode: boolean }) {
   const scrollToContact = () => {
@@ -50,11 +49,7 @@ export default function Hero({ isDarkMode }: { isDarkMode: boolean }) {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex justify-center"
           >
-            <ImageWithFallback
-              src={logoImg}
-              alt="FleetGO Logo"
-              className="h-40 w-auto object-contain drop-shadow-2xl"
-            />
+            <Logo className={`h-32 w-auto drop-shadow-2xl ${isDarkMode ? 'text-white' : 'text-slate-900'}`} />
           </motion.div>
 
           {/* Main Headline */}

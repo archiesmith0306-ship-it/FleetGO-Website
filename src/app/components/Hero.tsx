@@ -40,7 +40,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-8"
         >
-          <Logo className="h-14 w-auto text-white drop-shadow-2xl" />
+          <Logo className="h-28 w-auto text-white drop-shadow-2xl" />
         </motion.div>
 
         {/* Main Headline */}
@@ -50,9 +50,9 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="font-oswald uppercase text-5xl md:text-7xl lg:text-8xl leading-none text-white mb-6 max-w-4xl"
         >
-          Keeping America's
+          Keeping Your
           <br />
-          <span className="text-[#c8970d]">Fleets Moving</span>
+          <span className="text-[#c8970d]">Fleet Rolling</span>
           <br />
           <span className="text-3xl md:text-5xl lg:text-6xl text-white/80">24/7, Nationwide.</span>
         </motion.h1>

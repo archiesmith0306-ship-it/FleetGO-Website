@@ -26,15 +26,10 @@ export default function Navigation({ isMenuOpen, setIsMenuOpen, isDarkMode, setI
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 cursor-pointer"
+            className="cursor-pointer"
             onClick={() => scrollToSection('home')}
           >
-            <Logo className="w-16 h-16" />
-            <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-                FleetGO
-              </span>
-            </div>
+            <Logo className={`h-10 ${isDarkMode ? 'text-white' : 'text-slate-900'}`} />
           </motion.div>
 
           {/* Desktop Menu */}

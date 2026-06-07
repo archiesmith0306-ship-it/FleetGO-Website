@@ -1,32 +1,12 @@
 import { motion } from 'motion/react';
-import { Check, Star, ArrowRight } from 'lucide-react';
+import { Check, Zap } from 'lucide-react';
 
 const pricingPlans = [
-  {
-    trucks: '1-9',
-    price: '50',
-    popular: false
-  },
-  {
-    trucks: '10-19',
-    price: '45',
-    popular: true
-  },
-  {
-    trucks: '20-29',
-    price: '40',
-    popular: false
-  },
-  {
-    trucks: '30-50',
-    price: '38',
-    popular: false
-  },
-  {
-    trucks: '50+',
-    price: 'Custom',
-    popular: false
-  }
+  { trucks: '1–9 Trucks', price: '$100', unit: '/truck/mo', popular: false },
+  { trucks: '10–19 Trucks', price: '$90', unit: '/truck/mo', popular: true },
+  { trucks: '20–29 Trucks', price: '$80', unit: '/truck/mo', popular: false },
+  { trucks: '30–50 Trucks', price: '$70', unit: '/truck/mo', popular: false },
+  { trucks: '50+ Trucks', price: 'Negotiable', unit: '', popular: false },
 ];
 
 const features = [
@@ -37,147 +17,159 @@ const features = [
   'Monthly Reporting & Analytics',
   'Work Order Management',
   'Breakdown Cost Analysis',
-  'Dedicated Account Manager'
+  'Dedicated Account Manager',
 ];
 
-export default function Pricing({ isDarkMode }: { isDarkMode: boolean }) {
+export default function Pricing() {
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="pricing" className={`py-24 px-6 ${isDarkMode ? 'bg-slate-950' : 'bg-white'} transition-colors duration-300`}>
+    <section id="pricing" className="py-20 px-6 bg-[#f4f5f7] border-t border-slate-200">
       <div className="max-w-7xl mx-auto">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="mb-14"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Simple, Transparent
-            <br />
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Pricing
-            </span>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-8 h-1 bg-[#c8970d]" />
+            <span className="font-oswald uppercase tracking-[0.2em] text-[#c8970d] text-sm">Fleet Pricing</span>
+          </div>
+          <h2 className="font-oswald uppercase text-4xl md:text-5xl text-[#0b1829]">
+            Simple, Transparent Pricing
           </h2>
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-            Flexible plans that scale with your fleet. No hidden fees, no surprises.
+          <p className="text-slate-600 mt-4 max-w-2xl text-lg">
+            Scale-based plans with no hidden fees. Pay only for what your fleet needs.
           </p>
         </motion.div>
 
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
-          {pricingPlans.map((plan, index) => (
-            <motion.div
-              key={plan.trucks}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative rounded-2xl p-6 ${
-                plan.popular
-                  ? 'bg-gradient-to-br from-blue-600 to-cyan-600 shadow-2xl shadow-blue-600/30 scale-105'
-                  : 'bg-slate-900 border border-slate-800'
-              }`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-slate-950 px-4 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-current" />
-                  POPULAR
-                </div>
-              )}
-
-              <div className="text-center">
-                <div className={`text-lg font-semibold mb-2 ${plan.popular ? 'text-white' : 'text-slate-400'}`}>
-                  {plan.trucks} Trucks
-                </div>
-                <div className={`text-4xl font-bold mb-1 ${plan.popular ? 'text-white' : 'text-white'}`}>
-                  {plan.price === 'Custom' ? plan.price : `$${plan.price}`}
-                </div>
-                {plan.price !== 'Custom' && (
-                  <div className={`text-sm ${plan.popular ? 'text-blue-100' : 'text-slate-500'}`}>
-                    per truck/month
-                  </div>
-                )}
-              </div>
-
-              <button
-                onClick={scrollToContact}
-                className={`w-full mt-6 py-3 rounded-xl font-semibold transition-all ${
-                  plan.popular
-                    ? 'bg-white text-blue-600 hover:bg-slate-100'
-                    : 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700'
-                }`}
-              >
-                Get Started
-              </button>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Features List */}
+        {/* Pricing table */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-slate-900 border border-slate-800 rounded-3xl p-12"
+          transition={{ duration: 0.5 }}
+          className="border border-slate-300 bg-white mb-10 overflow-hidden"
         >
-          <h3 className="text-3xl font-bold mb-8 text-center">All Plans Include</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
+          {/* Table header */}
+          <div className="bg-[#0b1829] px-6 py-4 flex items-center gap-3">
+            <Zap className="w-5 h-5 text-[#c8970d]" />
+            <span className="font-oswald uppercase tracking-wider text-white">Fleet Management Plans</span>
+          </div>
+
+          <div className="grid grid-cols-1 divide-y divide-slate-200">
+            {pricingPlans.map((plan, index) => (
               <motion.div
-                key={index}
+                key={plan.trucks}
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="flex items-start gap-3"
+                transition={{ duration: 0.3, delay: index * 0.06 }}
+                className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-5 transition-colors ${
+                  plan.popular ? 'bg-yellow-50 border-l-4 border-[#c8970d]' : 'hover:bg-slate-50'
+                }`}
               >
-                <div className="bg-blue-500/10 rounded-full p-1 flex-shrink-0">
-                  <Check className="w-4 h-4 text-blue-400" />
+                <div className="flex items-center gap-4">
+                  <div className={`w-3 h-3 rounded-full flex-shrink-0 ${plan.popular ? 'bg-[#c8970d]' : 'bg-slate-300'}`} />
+                  <div>
+                    <div className="font-oswald uppercase text-[#0b1829] text-lg flex items-center gap-3">
+                      {plan.trucks}
+                      {plan.popular && (
+                        <span className="bg-[#c8970d] text-white text-xs px-2 py-0.5 font-oswald uppercase tracking-wider">
+                          Most Popular
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-sm text-slate-500">All features included</div>
+                  </div>
                 </div>
-                <span className="text-slate-300">{feature}</span>
+                <div className="flex items-center gap-4">
+                  <div className="text-right">
+                    <span className={`font-oswald text-3xl ${plan.popular ? 'text-[#c8970d]' : 'text-[#0b1829]'}`}>
+                      {plan.price}
+                    </span>
+                    {plan.unit && <span className="text-slate-500 text-sm ml-1">{plan.unit}</span>}
+                  </div>
+                  <button
+                    onClick={scrollToContact}
+                    className={`font-oswald uppercase tracking-wider text-sm px-5 py-2.5 transition-all whitespace-nowrap ${
+                      plan.popular
+                        ? 'bg-[#c8970d] hover:bg-[#a87b0a] text-white'
+                        : 'border border-[#0b1829] text-[#0b1829] hover:bg-[#0b1829] hover:text-white'
+                    }`}
+                  >
+                    Get Started
+                  </button>
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Additional Pricing */}
+        {/* All Plans Include */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-12 grid md:grid-cols-2 gap-6"
+          transition={{ duration: 0.5 }}
+          className="bg-white border border-slate-300 p-8 mb-8"
         >
-          <div className="bg-gradient-to-br from-blue-600/10 to-cyan-600/10 border border-blue-500/30 rounded-2xl p-8">
-            <h4 className="text-2xl font-bold mb-4 text-blue-400">Tender Tracking & Control</h4>
-            <ul className="space-y-3 text-slate-300">
-              <li className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-blue-400" />
-                1-25 Truckers: <span className="font-semibold">$30/tender</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-blue-400" />
-                26+ Truckers: <span className="font-semibold">$20/tender</span>
-              </li>
-            </ul>
+          <h3 className="font-oswald uppercase text-xl text-[#0b1829] mb-6 flex items-center gap-3">
+            <span className="w-6 h-1 bg-[#c8970d] block" />
+            All Plans Include
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.map((feature) => (
+              <div key={feature} className="flex items-start gap-3 text-sm text-slate-700">
+                <Check className="w-4 h-4 text-[#c8970d] flex-shrink-0 mt-0.5" />
+                <span>{feature}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Add-ons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="grid md:grid-cols-2 gap-6"
+        >
+          <div className="border border-slate-300 bg-white">
+            <div className="bg-[#0b1829] px-6 py-3">
+              <h4 className="font-oswald uppercase tracking-wider text-white">Tender Tracking & Control</h4>
+            </div>
+            <div className="p-6 space-y-3">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <span className="text-slate-600 text-sm">1–25 Truckers</span>
+                <span className="font-oswald text-xl text-[#0b1829]">$30<span className="text-sm text-slate-500">/tender</span></span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-600 text-sm">26+ Truckers</span>
+                <span className="font-oswald text-xl text-[#c8970d]">$20<span className="text-sm text-slate-500">/tender</span></span>
+              </div>
+            </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-600/10 to-pink-600/10 border border-purple-500/30 rounded-2xl p-8">
-            <h4 className="text-2xl font-bold mb-4 text-purple-400">Supply Chain Procurement</h4>
-            <p className="text-slate-300 mb-4">
-              Finding best serviced Leasing & Renting companies
-            </p>
-            <p className="text-slate-300">
-              Pricing: <span className="font-semibold">50% of first-time supplier fee</span>
-            </p>
+          <div className="border border-slate-300 bg-white">
+            <div className="bg-[#0b1829] px-6 py-3">
+              <h4 className="font-oswald uppercase tracking-wider text-white">Supply Chain Procurement</h4>
+            </div>
+            <div className="p-6">
+              <p className="text-slate-600 text-sm mb-4">
+                We find the best-priced leasing &amp; renting companies for your fleet's needs.
+              </p>
+              <div className="flex items-center gap-3">
+                <span className="font-oswald text-2xl text-[#0b1829]">50%</span>
+                <span className="text-slate-500 text-sm">of first-time supplier fee</span>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

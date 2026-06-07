@@ -1,138 +1,139 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Play } from 'lucide-react';
+import { Phone, ArrowRight, MapPin, Clock } from 'lucide-react';
 import Logo from './Logo';
+import HeroVideoBackground from './HeroVideoBackground';
 
-export default function Hero({ isDarkMode }: { isDarkMode: boolean }) {
+export default function Hero() {
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
-
   const scrollToPricing = () => {
-    const element = document.getElementById('pricing');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="home" className="min-h-screen relative flex items-center justify-center pt-32 pb-20 px-6">
-      {/* Background gradient */}
-      <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950' : 'bg-gradient-to-b from-blue-50 via-white to-gray-50'} transition-colors duration-300`}></div>
-      <div className={`absolute inset-0 ${isDarkMode ? 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950' : 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/50 via-transparent to-transparent'} transition-colors duration-300`}></div>
+    <section
+      id="home"
+      className="min-h-screen relative flex flex-col justify-center pt-16 overflow-hidden text-white"
+    >
+      <HeroVideoBackground />
 
-      {/* Content */}
-      <div className="relative z-20 max-w-6xl mx-auto">
+      {/* Main content */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 py-24 flex flex-col items-start">
+        {/* Experience badge */}
         <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3 mb-8"
+        >
+          <div className="w-2 h-2 bg-[#c8970d] rounded-full animate-pulse"></div>
+          <span className="font-oswald uppercase tracking-[0.2em] text-[#c8970d] text-sm">
+            4+ Years of Proven Excellence
+          </span>
+        </motion.div>
+
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-8"
+        >
+          <Logo className="h-28 w-auto text-white drop-shadow-2xl" />
+        </motion.div>
+
+        {/* Main Headline */}
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center space-y-8"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="font-oswald uppercase text-5xl md:text-7xl lg:text-8xl leading-none text-white mb-6 max-w-4xl"
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-2"
-          >
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-            <span className="text-blue-300 text-sm font-medium">4+ Years of Proven Excellence</span>
-          </motion.div>
+          Keeping Your
+          <br />
+          <span className="text-[#c8970d]">Fleet Rolling</span>
+          <br />
+          <span className="text-3xl md:text-5xl lg:text-6xl text-white/80">24/7, Nationwide.</span>
+        </motion.h1>
 
-          {/* Logo */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex justify-center"
-          >
-            <Logo className={`h-32 w-auto drop-shadow-2xl ${isDarkMode ? 'text-white' : 'text-slate-900'}`} />
-          </motion.div>
+        {/* Subheadline */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed mb-10"
+        >
+          Dedicated fleet management, maintenance coordination, ELD compliance,
+          and round-the-clock driver support — for trucking businesses of every size.
+        </motion.p>
 
-          {/* Main Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className={`text-5xl md:text-7xl lg:text-8xl font-bold leading-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="flex flex-col sm:flex-row gap-4 mb-16"
+        >
+          <button
+            onClick={scrollToContact}
+            className="group font-oswald uppercase tracking-wider bg-[#c8970d] hover:bg-[#a87b0a] text-white px-8 py-4 text-base flex items-center gap-3 transition-all shadow-lg shadow-yellow-900/40"
           >
-            Fleet Management
-            <br />
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Made Simple
-            </span>
-          </motion.h1>
+            Get a Free Quote
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+          <a
+            href="tel:3313138474"
+            className="group font-oswald uppercase tracking-wider border-2 border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 text-base flex items-center gap-3 transition-all"
+          >
+            <Phone className="w-5 h-5" />
+            (331) 313-8474
+          </a>
+        </motion.div>
 
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className={`text-xl md:text-2xl ${isDarkMode ? 'text-slate-300' : 'text-gray-600'} max-w-3xl mx-auto leading-relaxed`}
-          >
-            24/7 dedicated support, preventative maintenance, and complete fleet solutions
-            for businesses of all sizes.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
-          >
-            <button
-              onClick={scrollToContact}
-              className="group bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold flex items-center gap-3 transition-all transform hover:scale-105 shadow-lg shadow-blue-600/30"
-            >
-              Get Started Free
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button
-              onClick={scrollToPricing}
-              className={`group ${isDarkMode ? 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-white/20 text-white' : 'bg-gray-100 hover:bg-gray-200 border-gray-200 hover:border-gray-300 text-gray-900'} border-2 px-8 py-4 rounded-xl text-lg font-semibold flex items-center gap-3 transition-all`}
-            >
-              View Pricing
-            </button>
-          </motion.div>
-
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.1 }}
-            className={`pt-12 flex flex-wrap justify-center gap-8 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'} text-sm`}
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span>24/7 Support</span>
+        {/* Trust indicators */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="flex flex-wrap gap-6 text-sm text-slate-400"
+        >
+          {[
+            { icon: Clock, text: '24/7 Live Support' },
+            { icon: MapPin, text: '500+ Service Locations' },
+            { icon: Phone, text: 'No Hidden Fees' },
+          ].map(({ icon: Icon, text }) => (
+            <div key={text} className="flex items-center gap-2">
+              <Icon className="w-4 h-4 text-[#c8970d]" />
+              <span>{text}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span>No Hidden Fees</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span>Nationwide Coverage</span>
-            </div>
-          </motion.div>
+          ))}
         </motion.div>
       </div>
+
+      {/* Bottom stats strip */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.9 }}
+        className="relative z-20 bg-[#c8970d] mt-auto"
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-yellow-600">
+            {[
+              { value: '4+', label: 'Years in Business' },
+              { value: '500+', label: 'Service Locations' },
+              { value: '24/7', label: 'Live Support' },
+              { value: '100%', label: 'Vetted Partners' },
+            ].map((stat) => (
+              <div key={stat.label} className="py-4 px-6 text-center">
+                <div className="font-oswald text-2xl md:text-3xl text-white">{stat.value}</div>
+                <div className="text-yellow-100 text-xs uppercase tracking-wider mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

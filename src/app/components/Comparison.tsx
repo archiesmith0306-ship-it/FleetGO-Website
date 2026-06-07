@@ -28,9 +28,9 @@ const comparisons = [
   }
 ];
 
-export default function Comparison({ isDarkMode }: { isDarkMode: boolean }) {
+export default function Comparison() {
   return (
-    <section className={`py-24 px-6 ${isDarkMode ? 'bg-slate-900' : 'bg-gray-100'} transition-colors duration-300`}>
+    <section className="py-24 px-6 bg-slate-50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,10 +39,10 @@ export default function Comparison({ isDarkMode }: { isDarkMode: boolean }) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className={`text-4xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-            Why Choose <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">FleetGO</span>?
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-slate-900">
+            Why Choose <span className="bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">FleetGO</span>?
           </h2>
-          <p className={`text-xl ${isDarkMode ? 'text-slate-400' : 'text-gray-600'} max-w-3xl mx-auto`}>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             See the difference our comprehensive fleet management solution makes
           </p>
         </motion.div>
@@ -50,12 +50,12 @@ export default function Comparison({ isDarkMode }: { isDarkMode: boolean }) {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Without FleetGO */}
           <div>
-            <div className={`${isDarkMode ? 'bg-red-500/10 border-red-500/30' : 'bg-red-50 border-red-200'} border rounded-2xl p-6 mb-6`}>
+            <div className="bg-red-50 border border-red-200 rounded-2xl p-6 mb-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center">
-                  <X className="w-6 h-6 text-red-400" />
+                <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                  <X className="w-6 h-6 text-red-500" />
                 </div>
-                <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Without FleetGO</h3>
+                <h3 className="text-xl font-bold text-slate-900">Without FleetGO</h3>
               </div>
             </div>
             <div className="space-y-4">
@@ -66,11 +66,11 @@ export default function Comparison({ isDarkMode }: { isDarkMode: boolean }) {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`${isDarkMode ? 'bg-slate-800/50 border-slate-700' : 'bg-white border-gray-200'} border rounded-xl p-4`}
+                  className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"
                 >
                   <div className="flex items-start gap-3">
-                    <X className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                    <span className={isDarkMode ? 'text-slate-300' : 'text-gray-700'}>{item.without}</span>
+                    <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700">{item.without}</span>
                   </div>
                 </motion.div>
               ))}
@@ -79,12 +79,12 @@ export default function Comparison({ isDarkMode }: { isDarkMode: boolean }) {
 
           {/* With FleetGO */}
           <div>
-            <div className={`${isDarkMode ? 'bg-green-500/10 border-green-500/30' : 'bg-green-50 border-green-200'} border rounded-2xl p-6 mb-6`}>
+            <div className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
-                  <Check className="w-6 h-6 text-green-400" />
+                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                  <Check className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>With FleetGO</h3>
+                <h3 className="text-xl font-bold text-slate-900">With FleetGO</h3>
               </div>
             </div>
             <div className="space-y-4">
@@ -95,11 +95,11 @@ export default function Comparison({ isDarkMode }: { isDarkMode: boolean }) {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`${isDarkMode ? 'bg-slate-800/50 border-blue-500/30' : 'bg-white border-blue-200'} border rounded-xl p-4 hover:border-blue-500/50 transition-all`}
+                  className="bg-white border border-blue-200 rounded-xl p-4 shadow-sm hover:border-blue-400 transition-all"
                 >
                   <div className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                    <span className={`font-medium ${isDarkMode ? 'text-blue-300' : 'text-blue-700'}`}>{item.with}</span>
+                    <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="font-medium text-blue-700">{item.with}</span>
                   </div>
                 </motion.div>
               ))}
